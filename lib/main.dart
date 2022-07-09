@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ios_reminders/screens/home_screen.dart';
+import 'package:ios_reminders/screens/home/home_screen.dart';
 
 main() {
   runApp(const App());
@@ -13,7 +13,7 @@ class App extends StatelessWidget {
     return MaterialApp(
       initialRoute: '/',
       routes: {
-        '/': (context) => const HomeScreen(),
+        '/': (context) => HomeScreen(),
       },
       theme: ThemeData(
         // scaffoldBackgroundColor: Colors.black,
