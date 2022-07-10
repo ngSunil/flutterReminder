@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:ios_reminders/models/category.dart';
 
 class CategoryIcon extends StatelessWidget {
   final dynamic bgColor;
   final IconData iconData;
 
-  CategoryIcon({required this.bgColor, required this.iconData});
+  const CategoryIcon({required this.bgColor, required this.iconData});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -17,7 +16,6 @@ class CategoryIcon extends StatelessWidget {
       child: Icon(
         iconData,
         size: 30,
-        color: Colors.white,
       ),
     );
   }

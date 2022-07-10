@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:ios_reminders/models/category_collection.dart';
-import 'package:ios_reminders/screens/home/gridview_items.dart';
-import 'package:ios_reminders/screens/home/listview_items.dart';
-import 'footer.dart';
+import 'package:ios_reminders/models/categories/category_collection.dart';
+import 'package:ios_reminders/screens/home/widgets/listview_items.dart';
+import 'package:ios_reminders/screens/home/widgets/gridview_items.dart';
+import 'package:ios_reminders/screens/home/widgets/footer.dart';
+
+enum LayoutType { grid, list }
 
 class HomeScreen extends StatefulWidget {
+  const HomeScreen({Key? key}) : super(key: key);
+
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  String layoutType = 'grid';
+  LayoutType layoutType = LayoutType.grid;
 
   final CategoryCollection categoryCollection = CategoryCollection();
 
@@ -21,20 +25,19 @@ class _HomeScreenState extends State<HomeScreen> {
         actions: [
           TextButton(
             onPressed: () {
-              print(categoryCollection.selectedCategories);
-              if (layoutType == 'grid') {
+              if (layoutType == LayoutType.grid) {
                 setState(() {
-                  layoutType = 'list';
+                  layoutType = LayoutType.list;
                 });
               } else {
                 setState(() {
-                  layoutType = 'grid';
+                  layoutType = LayoutType.grid;
                 });
               }
             },
             child: Text(
-              layoutType == 'grid' ? 'Edit' : 'Done',
-              style: const TextStyle(color: Colors.white),
+              layoutType == LayoutType.grid ? 'Edit' : 'Done',
+              // style: const TextStyle(color: Colors.white),
             ),
           )
         ],
@@ -42,12 +45,12 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Column(
         children: [
           Expanded(
-            child: layoutType == 'grid'
+            child: layoutType == LayoutType.grid
                 ? GridviewItems(
                     categories: categoryCollection.selectedCategories)
-                : ListViewItems(),
+                : ListViewItems(collection: categoryCollection),
           ),
-          Footer()
+          const Footer()
         ],
       ),
     );

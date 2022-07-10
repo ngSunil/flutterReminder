@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ios_reminders/models/category.dart';
-import 'package:ios_reminders/models/category_collection.dart';
+import 'package:ios_reminders/models/categories/category.dart';
 
 class GridviewItems extends StatelessWidget {
   const GridviewItems({required this.categories});
@@ -10,6 +9,7 @@ class GridviewItems extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GridView.count(
+        shrinkWrap: true,
         crossAxisCount: 2,
         childAspectRatio: 16 / 9,
         crossAxisSpacing: 10,
@@ -33,10 +33,16 @@ class GridviewItems extends StatelessWidget {
                         children: [
                           category.icon,
                           category.status,
-                          Text(category.reminderCount.toString())
+                          Text(
+                            category.reminderCount.toString(),
+                            style: Theme.of(context).textTheme.headline6,
+                          )
                         ],
                       ),
-                      Text(category.name),
+                      Text(
+                        category.name,
+                        style: Theme.of(context).textTheme.headline5,
+                      ),
                     ],
                   ),
                 ),

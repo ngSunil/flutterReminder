@@ -2,7 +2,7 @@ import 'dart:collection';
 
 import 'package:ios_reminders/common/widgets/categoryIcon.dart';
 import 'package:ios_reminders/common/widgets/status.dart';
-import 'package:ios_reminders/models/category.dart';
+import 'package:ios_reminders/models/categories/category.dart';
 import 'package:flutter/material.dart';
 
 class CategoryCollection {
@@ -54,11 +54,10 @@ class CategoryCollection {
   }
 
   List<Category> get selectedCategories {
-    print(_categories.where((element) => element.isChecked).toList());
-    _categories.forEach((element) {
-      print("Name ::: ${element.name}");
-      print("iS selected ::: ${element.isChecked}");
-    });
+    // _categories.forEach((element) {
+    //   debugPrint("Name ::: ${element.name}");
+    //   debugPrint("iS selected ::: ${element.isChecked}");
+    // });
     return _categories.where((element) => element.isChecked).toList();
   }
 }
