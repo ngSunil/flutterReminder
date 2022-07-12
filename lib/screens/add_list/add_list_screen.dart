@@ -3,6 +3,9 @@ import 'package:ios_reminders/models/common/custom_color.dart';
 import 'package:ios_reminders/models/common/custom_color_collection.dart';
 import 'package:ios_reminders/models/common/custom_icon.dart';
 import 'package:ios_reminders/models/common/custom_icon_collection.dart';
+import 'package:ios_reminders/models/todo_list/todo_list.dart';
+import 'package:ios_reminders/models/todo_list/todo_list_collection.dart';
+import 'package:provider/provider.dart';
 
 class AddListScreen extends StatefulWidget {
   const AddListScreen({super.key});
@@ -46,6 +49,16 @@ class _AddListScreenState extends State<AddListScreen> {
                 ? () {
                     if (_textController.text.isNotEmpty) {
                       debugPrint('save to database');
+                      Provider.of<ToDoListCollection>(context, listen: false)
+                          .addToDoList(ToDoList(
+                              id: DateTime.now().toString(),
+                              title: _textController.text,
+                              icon: {
+                            "id": _selectedIcon.id,
+                            "color": _selectedColor.id
+                          }));
+
+                      Navigator.pop(context);
                     } else {
                       debugPrint('please enter a text');
                     }

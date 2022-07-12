@@ -16,6 +16,6 @@ class CustomIconCollection {
   UnmodifiableListView<CustomIcon> get icons => UnmodifiableListView(_icons);
 
   CustomIcon getIcon(id) {
-    return _icons.firstWhere((customIcon) => customIcon.id = id);
+    return _icons.firstWhere((customIcon) => customIcon.id == id);
   }
 }

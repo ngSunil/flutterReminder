@@ -16,6 +16,7 @@ class CustomColorCollection {
   UnmodifiableListView<CustomColor> get colors => UnmodifiableListView(_colors);
 
   CustomColor findColorById(id) {
-    return _colors.firstWhere((customColor) => customColor.id = id);
+    debugPrint(id);
+    return _colors.firstWhere((customColor) => customColor.id == id);
   }
 }

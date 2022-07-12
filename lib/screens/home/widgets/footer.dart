@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:ios_reminders/models/todo_list/todo_list.dart';
 import 'package:ios_reminders/screens/add_list/add_list_screen.dart';
 import 'package:ios_reminders/screens/add_reminder/add_reminder_screen.dart';
 
 class Footer extends StatelessWidget {
-  const Footer({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Container(

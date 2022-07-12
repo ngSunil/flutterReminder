@@ -9,6 +9,7 @@ class GridviewItems extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GridView.count(
+        physics: NeverScrollableScrollPhysics(),
         shrinkWrap: true,
         crossAxisCount: 2,
         childAspectRatio: 16 / 9,
@@ -22,28 +23,30 @@ class GridviewItems extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10),
                   color: const Color.fromARGB(255, 40, 40, 42),
                 ),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          category.icon,
-                          category.status,
-                          Text(
-                            category.reminderCount.toString(),
-                            style: Theme.of(context).textTheme.headline6,
-                          )
-                        ],
-                      ),
-                      Text(
-                        category.name,
-                        style: Theme.of(context).textTheme.headline5,
-                      ),
-                    ],
+                child: SizedBox(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            category.icon,
+                            category.status,
+                            Text(
+                              category.reminderCount.toString(),
+                              style: Theme.of(context).textTheme.headline6,
+                            )
+                          ],
+                        ),
+                        Text(
+                          category.name,
+                          style: Theme.of(context).textTheme.headline5,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
