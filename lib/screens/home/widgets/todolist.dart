@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:ios_reminders/common/widgets/categoryIcon.dart';
 import 'package:ios_reminders/models/common/custom_color_collection.dart';
 import 'package:ios_reminders/models/common/custom_icon_collection.dart';
-import 'package:ios_reminders/models/todo_list/todo_list.dart';
 import 'package:ios_reminders/models/todo_list/todo_list_collection.dart';
 import 'package:provider/provider.dart';
 
@@ -27,7 +26,7 @@ class todoList extends StatelessWidget {
             clipBehavior: Clip.antiAlias,
             decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
             child: ListView.builder(
-                padding: const EdgeInsets.only(bottom: 70),
+                padding: EdgeInsets.zero,
                 shrinkWrap: true,
                 itemCount: todoLists.length,
                 itemBuilder: (context, index) {

@@ -16,59 +16,64 @@ class _ListViewItemsState extends State<ListViewItems> {
 
   @override
   Widget build(BuildContext context) {
-    return ReorderableListView(
-      onReorder: (oldIndex, newIndex) {
-        // print('$oldIndex >> $newIndex');
-        if (newIndex > oldIndex) {
-          newIndex -= 1;
-        }
-        final item = categoryCollection.removeItem(oldIndex);
-        setState(() {
-          categoryCollection.insert(newIndex, item);
-        });
-      },
-      children: categoryCollection.categories
-          .map((category) => SizedBox(
-                key: UniqueKey(),
-                height: LISTVIEW_HEIGHT,
-                child: ListTile(
-                  onTap: () {
-                    setState(() {
-                      category.toggleCheckBox();
-                    });
-                  },
-                  tileColor: Colors.grey[800],
-                  leading: Container(
-                    padding: const EdgeInsets.all(5),
-                    decoration: BoxDecoration(
+    return Container(
+      height: categoryCollection.categories.length * LISTVIEW_HEIGHT,
+      child: ReorderableListView(
+          onReorder: (int oldIndex, int newIndex) {
+            // print('reordered list');
+            print('oldIndex $oldIndex');
+            print('newIndex $newIndex');
+            if (newIndex > oldIndex) {
+              newIndex -= 1;
+            }
+
+            final item = categoryCollection.removeItem(oldIndex);
+            setState(() {
+              categoryCollection.insert(newIndex, item);
+            });
+          },
+          children: categoryCollection.categories
+              .map(
+                (category) => SizedBox(
+                  key: UniqueKey(),
+                  height: LISTVIEW_HEIGHT,
+                  child: ListTile(
+                    onTap: () {
+                      //toggle checkbox
+                      setState(() {
+                        category.toggleCheckBox();
+                      });
+                    },
+                    tileColor: Colors.grey[800],
+                    leading: Container(
+                      decoration: BoxDecoration(
+                          color: category.isChecked
+                              ? Colors.blueAccent
+                              : Colors.transparent,
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                              color: category.isChecked
+                                  ? Colors.blueAccent
+                                  : Colors.grey)),
+                      child: Icon(
+                        Icons.check,
                         color: category.isChecked
-                            ? Colors.blueGrey
+                            ? Colors.white
                             : Colors.transparent,
-                        shape: BoxShape.circle,
-                        border: Border.all(
-                            color: category.isChecked
-                                ? Colors.blueGrey
-                                : Colors.blueGrey)),
-                    child: Icon(
-                      Icons.check,
-                      color: category.isChecked
-                          ? Colors.white
-                          : Colors.transparent,
-                    ),
-                  ),
-                  title: Row(
-                    children: [
-                      category.icon,
-                      const SizedBox(
-                        width: 10,
                       ),
-                      Text(category.name),
-                    ],
+                    ),
+                    title: Row(
+                      children: [
+                        category.icon,
+                        SizedBox(width: 10),
+                        Text(category.name),
+                      ],
+                    ),
+                    trailing: Icon(Icons.reorder),
                   ),
-                  trailing: const Icon(Icons.reorder),
                 ),
-              ))
-          .toList(),
+              )
+              .toList()),
     );
   }
 }

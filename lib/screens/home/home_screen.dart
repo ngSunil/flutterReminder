@@ -32,34 +32,56 @@ class _HomeScreenState extends State<HomeScreen> {
     List<ToDoList> todoLists =
         Provider.of<ToDoListCollection>(context).todolists;
     return Scaffold(
-      appBar: AppBar(
-        actions: [
-          TextButton(
-            onPressed: () {
-              if (layoutType == LayoutType.grid) {
-                setState(() {
-                  layoutType = LayoutType.list;
-                });
-              } else {
-                setState(() {
-                  layoutType = LayoutType.grid;
-                });
-              }
-            },
-            child: Text(
-              layoutType == LayoutType.grid ? 'Edit' : 'Done',
-
-              // style: const TextStyle(color: Colors.white),
-            ),
-          )
-        ],
-      ),
+      appBar: AppBar(actions: [
+        TextButton(
+          onPressed: () {
+            if (layoutType == LayoutType.grid) {
+              setState(() {
+                layoutType = LayoutType.list;
+              });
+            } else {
+              setState(() {
+                layoutType = LayoutType.grid;
+              });
+            }
+          },
+          child: Text(
+            layoutType == LayoutType.grid ? 'Edit' : 'Done',
+            // style: TextStyle(color: Colors.white),
+          ),
+        )
+      ]),
+      // body: Column(
+      //   children: [
+      //     layoutType == LayoutType.grid
+      //         ? GridviewItems(categories: categoryCollection.selectedCategories)
+      //         : ListViewItems(collection: categoryCollection),
+      //     Expanded(child: todoList()),
+      //     Footer()
+      //   ],
+      // ),
       body: Column(
+        // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        // crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          layoutType == LayoutType.grid
-              ? GridviewItems(categories: categoryCollection.selectedCategories)
-              : ListViewItems(collection: categoryCollection),
-          Expanded(child: todoList()),
+          Expanded(
+            child: ListView(
+              // shrinkWrap: true,
+              children: [
+                AnimatedCrossFade(
+                  duration: Duration(milliseconds: 300),
+                  crossFadeState: layoutType == LayoutType.grid
+                      ? CrossFadeState.showFirst
+                      : CrossFadeState.showSecond,
+                  firstChild: GridviewItems(
+                    categories: categoryCollection.selectedCategories,
+                  ),
+                  secondChild: ListViewItems(collection: categoryCollection),
+                ),
+                todoList(),
+              ],
+            ),
+          ),
           Footer()
         ],
       ),
