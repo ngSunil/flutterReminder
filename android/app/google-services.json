@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "846809680594",
+    "project_id": "iosreminder-4639e",
+    "storage_bucket": "iosreminder-4639e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:846809680594:android:5c1ca7ea23e4bb64c03b0b",
+        "android_client_info": {
+          "package_name": "com.sunil.ios_reminder.ios_reminders"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "846809680594-1j5s84mk4ls3fip93gnedlfeh55l8u07.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAOgDqxJdXBexfj0NCqwiOeA-ZOtd13uyw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "846809680594-1j5s84mk4ls3fip93gnedlfeh55l8u07.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
